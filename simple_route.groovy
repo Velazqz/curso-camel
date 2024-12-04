@@ -1,7 +1,7 @@
 @GrabConfig(systemClassLoader = true)
 @Grapes([
 	@Grab(group = 'org.apache.camel', module = 'camel-core', version = '4.0.1'),
-	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.5.12', scope = 'test')
+	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.4.11')
 ])
 import org.apache.camel.CamelContext
 import org.apache.camel.builder.RouteBuilder
