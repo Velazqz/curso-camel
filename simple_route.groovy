@@ -1,21 +1,26 @@
-@Grapes(
-    @Grab(group='org.apache.camel', module='camel-core', version='4.0.1')
-        @Grab(group='ch.qos.logback', module='logback-classic', version='1.5.12', scope='test')
-
-)
+@GrabConfig(systemClassLoader = true)
+@Grapes([
+	@Grab(group = 'org.apache.camel', module = 'camel-core', version = '4.0.1'),
+	@Grab(group = 'ch.qos.logback', module = 'logback-classic', version = '1.5.12', scope = 'test')
+])
 import org.apache.camel.CamelContext
-import org.apache.camel.impl.DefaultCamelContext
 import org.apache.camel.builder.RouteBuilder
+import org.apache.camel.impl.DefaultCamelContext
 
 CamelContext context = new DefaultCamelContext()
 
-println "Comienza camel context"
+println "Comienza Camel Context"
 
-//context.addRoutes()
+context.addRoutes(new RouteBuilder() {
+	@Override
+	void configure() throws Exception {
+		from("file:input")
+			.to("file://output")
+	}
+})
 
 context.start()
 Thread.sleep(5000)
-context.stop
+context.stop()
 
-println "Termina camel context"
-
+println "Termina Camel Context"
